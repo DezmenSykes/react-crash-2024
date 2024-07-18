@@ -13,8 +13,23 @@ const AddJobPage = () => {
   const [companyEmail, setCompanyEmail] = useState('');
   const [companyPhone, setCompanyPhone] = useState('');
 
-  const submitorm = () => {
-    
+  const submitForm = (e) => {
+    e.preventDefault()
+    const newJob = {
+      title,
+      type,
+      description,
+      location,
+      salary,
+      company: {
+        name: companyName,
+        description: companyDescription,
+        contactEmail: companyEmail,
+        contactPhone: companyPhone
+      }
+    }
+
+    console.log(newJob)
   }
 
   return (
