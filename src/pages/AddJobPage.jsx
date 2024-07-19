@@ -28,8 +28,6 @@ const AddJobPage = () => {
         contactPhone: companyPhone
       }
     }
-
-    console.log(newJob)
   }
 
   return (
