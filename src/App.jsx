@@ -13,8 +13,19 @@ import AddJobPage from './pages/AddJobPage';
 
 const App = () => {
 
-  const addJob = (newJob) => {
-    console.log(newJob, 'job added by parameter function'); 
+  const addJob = async (newJob) => {
+    const res = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newJob)
+    }).catch((er) => {
+      console.log(er.message)
+    }).finally(() => {
+      console.log('New Job Added!')
+    })
+    return;
   }
 
   const router = createBrowserRouter(
@@ -27,7 +38,7 @@ const App = () => {
           element={<JobPage />}
           loader={jobLoader}
         />
-        
+
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
