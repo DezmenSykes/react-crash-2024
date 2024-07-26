@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const AddJobPage = () => {
+const AddJobPage = ({ addJobSubmit }) => {
 
   const [title, setTitle] = useState('');
   const [type, setType] = useState('Full-Time');
@@ -12,6 +13,8 @@ const AddJobPage = () => {
   const [companyDescription, setCompanyDescription] = useState('');
   const [companyEmail, setCompanyEmail] = useState('');
   const [companyPhone, setCompanyPhone] = useState('');
+
+  const navigate = useNavigate();
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -28,6 +31,10 @@ const AddJobPage = () => {
         contactPhone: companyPhone
       }
     }
+
+    addJobSubmit(newJob)
+
+    return navigate('/jobs')
   }
 
   return (
@@ -41,7 +48,7 @@ const AddJobPage = () => {
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                >Job Type</label
+              >Job Type</label
               >
               <select
                 id="type"
@@ -49,7 +56,7 @@ const AddJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 required
                 value={type}
-                onChange={(e) => {setType(e.target.value);}}
+                onChange={(e) => { setType(e.target.value); }}
               >
                 <option value="Full-Time">Full-Time</option>
                 <option value="Part-Time">Part-Time</option>
@@ -68,14 +75,14 @@ const AddJobPage = () => {
                 placeholder="eg. Beautiful Apartment In Miami"
                 required
                 value={title}
-                onChange={(e) => {setTitle(e.target.value) }}
+                onChange={(e) => { setTitle(e.target.value) }}
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="description"
                 className="block text-gray-700 font-bold mb-2"
-                >Description</label
+              >Description</label
               >
               <textarea
                 id="description"
@@ -84,14 +91,14 @@ const AddJobPage = () => {
                 rows="4"
                 placeholder="Add any job duties, expectations, requirements, etc"
                 value={description}
-                onChange={(e) => {setDescription(e.target.value) }}
+                onChange={(e) => { setDescription(e.target.value) }}
               ></textarea>
             </div>
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-        
-                >Salary</label
+
+              >Salary</label
               >
               <select
                 id="salary"
@@ -99,7 +106,7 @@ const AddJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 required
                 value={salary}
-                onChange={(e) => {setDescription(e.target.value) }}
+                onChange={(e) => { setSalary(e.target.value) }}
               >
                 <option value="Under $50K">Under $50K</option>
                 <option value="$50K - 60K">$50K - $60K</option>
@@ -115,7 +122,7 @@ const AddJobPage = () => {
               </select>
             </div>
 
-            <div class='mb-4'>
+            <div className='mb-4'>
               <label class='block text-gray-700 font-bold mb-2'>
                 Location
               </label>
@@ -126,8 +133,8 @@ const AddJobPage = () => {
                 class='border rounded w-full py-2 px-3 mb-2'
                 placeholder='Company Location'
                 value={location}
-                onChange={(e) => {setLocation(e.target.value) }}
-                required           
+                onChange={(e) => { setLocation(e.target.value) }}
+                required
               />
             </div>
 
@@ -135,7 +142,7 @@ const AddJobPage = () => {
 
             <div className="mb-4">
               <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
-                >Company Name</label
+              >Company Name</label
               >
               <input
                 type="text"
@@ -144,7 +151,7 @@ const AddJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Company Name"
                 value={companyName}
-                onChange={(e) => {setCompanyName(e.target.value) }}
+                onChange={(e) => { setCompanyName(e.target.value) }}
               />
             </div>
 
@@ -152,7 +159,7 @@ const AddJobPage = () => {
               <label
                 htmlFor="company_description"
                 className="block text-gray-700 font-bold mb-2"
-                >Company Description</label
+              >Company Description</label
               >
               <textarea
                 id="company_description"
@@ -161,7 +168,7 @@ const AddJobPage = () => {
                 rows="4"
                 placeholder="What does your company do?"
                 value={companyDescription}
-                onChange={(e) => {setCompanyDescription(e.target.value) }}
+                onChange={(e) => { setCompanyDescription(e.target.value) }}
               ></textarea>
             </div>
 
@@ -169,7 +176,7 @@ const AddJobPage = () => {
               <label
                 htmlFor="contact_email"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Email</label
+              >Contact Email</label
               >
               <input
                 type="email"
@@ -179,14 +186,14 @@ const AddJobPage = () => {
                 placeholder="Email address for applicants"
                 required
                 value={companyEmail}
-                onChange={(e) => {setCompanyEmail(e.target.value) }}
+                onChange={(e) => { setCompanyEmail(e.target.value) }}
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="contact_phone"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Phone</label
+              >Contact Phone</label
               >
               <input
                 type="tel"
@@ -195,7 +202,7 @@ const AddJobPage = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Optional phone for applicants"
                 value={companyPhone}
-                onChange={(e) => {setCompanyPhone(e.target.value) }}
+                onChange={(e) => { setCompanyPhone(e.target.value) }}
               />
             </div>
 

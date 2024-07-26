@@ -13,6 +13,10 @@ import AddJobPage from './pages/AddJobPage';
 
 const App = () => {
 
+  const addJob = (newJob) => {
+    console.log(newJob, 'job added by parameter function'); 
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
@@ -24,7 +28,7 @@ const App = () => {
           loader={jobLoader}
         />
         
-        <Route path='/add-job' element={<AddJobPage />} />
+        <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     )
