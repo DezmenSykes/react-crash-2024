@@ -13,6 +13,14 @@ import AddJobPage from './pages/AddJobPage';
 
 const App = () => {
 
+  const deleteJob = async  (jobId) => {
+    const res = await fetch(`/api/jobs/${jobId}`, {
+      method: 'DELETE'
+    }).finally(()=>{
+      console.log(`Job: ${jobId} - DELETED.`)
+    })
+  }
+
   const addJob = async (newJob) => {
     const res = await fetch('/api/jobs', {
       method: 'POST',
@@ -35,7 +43,7 @@ const App = () => {
         <Route path='/jobs' element={<JobsPage />} />
         <Route
           path='/jobs/:id'
-          element={<JobPage />}
+          element={<JobPage deleteJob={deleteJob} />}
           loader={jobLoader}
         />
 
