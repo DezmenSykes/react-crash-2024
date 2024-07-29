@@ -1,10 +1,12 @@
 import React from 'react'
-import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
+import {useLoaderData, useNavigate } from 'react-router-dom';
 import { useState } from 'react'
-import { toast
- } from 'react-toastify';
-const EditJobPage = () => {
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+const EditJobPage = ({ updateJobSubmit }) => {
   const job = useLoaderData()
+  const { id } = useParams();
 
   const [title, setTitle] = useState(job.title);
   const [type, setType] = useState(job.type);
@@ -39,11 +41,12 @@ const EditJobPage = () => {
 
     toast.success('Job Updated Successfully.')
 
-    return navigate('/jobs')
+    return navigate(`/jobs/${id}`)
   }
 
   return (
-    <section className="bg-indigo-50">
+    <>
+          <section className="bg-indigo-50">
     <div className="container m-auto max-w-2xl py-24">
       <div
         className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
@@ -223,6 +226,7 @@ const EditJobPage = () => {
       </div>
     </div>
   </section>
+    </>
   )
 }
 

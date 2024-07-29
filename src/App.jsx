@@ -22,6 +22,17 @@ const App = () => {
     })
   }
 
+  const updatedJob = async (updatedJob) => {
+    const res = await fetch(`/api/jobs/${updatedJob.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedJob)
+    })
+    return;
+  }
+
   const addJob = async (newJob) => {
     const res = await fetch('/api/jobs', {
       method: 'POST',
@@ -44,7 +55,7 @@ const App = () => {
         <Route path='/jobs' element={<JobsPage />} />
         <Route
           path='/edit-job/:id'
-          element={<EditJobPage />}
+          element={<EditJobPage updateJobSubmit={updatedJob} />}
           loader={editJobLoader}
         />
         <Route
